@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "target": "es2016",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "sourceMap": true,
+      "outDir": "dist",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": false,
+      "noFallthroughCasesInSwitch": true,
+      "skipLibCheck": true
+    },
+    "include": [
+      "src/**/*"
+    ]
+  }
+  

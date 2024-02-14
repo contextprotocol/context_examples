@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Community Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the community"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the community"
+    },
+    "website": {
+      "type": "string",
+      "description": "Website of the community"
+    },
+    "team": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Role"
+      },
+      "description": "List of community members"
+    }
+  },
+  "definitions": {
+    "Role": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string",
+          "description": "Context Link to the Member of the Community."
+        },
+        "role": {
+          "type": "string",
+          "description": "The role in the Community."
+        },
+        "start": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "The start date of the role in YYYY-MM-DD format."
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "The end date of the role in YYYY-MM-DD format."
+        }
+      },
+      "required": [
+        "context",
+        "role"
+      ]
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

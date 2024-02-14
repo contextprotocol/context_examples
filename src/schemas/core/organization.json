@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Organization Schema",
+  "type": "object",
+  "properties": {
+      "name": {
+          "type": "string",
+          "description": "Name of the organization"
+      },
+      "description": {
+          "type": "string",
+          "description": "Description of the organization"
+      },
+      "website": {
+          "type": "string",
+          "description": "Website of the organization"
+      }
+  },
+  "required": [
+      "name"
+  ]
+}

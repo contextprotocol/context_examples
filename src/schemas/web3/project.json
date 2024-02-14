@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Schema in the Web3 DAO",
+  "type": "object",
+  "properties": {
+    "chains": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Chain"
+      },
+      "description": "List of chains where the project is active",
+      "linkedField": "startup/ecosystem/projects"
+    }
+  },
+  "definitions": {
+    "Chain": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string",
+          "description": "Context Link to the Chain."
+        }
+      },
+      "required": [
+        "context"
+      ]
+    }
+  },
+  "required": []
+}

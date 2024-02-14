@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Startup Ecosystem Schema",
+  "type": "object",
+  "properties": {
+    "projects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Project"
+      },
+      "description": "List of projects in the ecosystem",
+      "linkedField": "web3/project/chains"
+    },
+    "partners": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Project"
+      },
+      "description": "List of partners of the startup",
+      "linkedField": "startup/ecosystem/partners"
+    }
+  },
+  "definitions": {
+    "Project": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "type": "string",
+          "description": "Context Link to the Project."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the collaboration."
+        }
+      },
+      "required": [
+        "context"
+      ]
+    }
+  },
+  "required": []
+}
