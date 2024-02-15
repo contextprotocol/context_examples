@@ -21,9 +21,9 @@ async function main() {
     const document = await context.clone('context', { storage, wallet });
     if (document.info.registeredName) {
         console.log('First commit...');
-        await document.write({name: 'Context Protocol', url: 'https://www.ctx.xyz'});
+        await document.write({name: 'Context Protocol', url: 'https://www.ctx1.xyz'});
         await document.commit('First commit');
-        console.log('Pushing changes 1.0.2...');
+        console.log('Pushing changes 1.0.3...');
         await document.push(Version.PATCH);
     } else console.log('Invalid name');
     
