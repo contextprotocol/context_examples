@@ -9,6 +9,9 @@ async function showInfo(context: Context, storage: StorageObject, name: string) 
     // Test 1 : Clone Data from Mumbai and arweave. No Wallet.
     
     const document = await context.clone(name, { storage });
+    console.log("1===================");
+    console.log(document.schemas);
+    console.log("2===================");
     console.log(chalk.blue('\n Document : ') + chalk.blue.bold(name));
     console.log(chalk.grey('\n - Name : ') + chalk.green(document.info.name));
     console.log(chalk.grey('\n - Path : ') + chalk.green(document.info.path));
@@ -40,8 +43,9 @@ async function main() {
     // Test 1 : Clone Data from Mumbai and arweave. No Wallet.
     // await showInfo(context, storage, 'context');
     // await showInfo(context, storage, 'core');
-    await showInfo(context, storage, 'core/human');
-    await showInfo(context, storage, 'core/human?version=1.0.0');
+    // await showInfo(context, storage, 'core/human');
+    // await showInfo(context, storage, 'core/human?version=1.0.0');
+    await showInfo(context, storage, 'events1');
 }
 
 main().catch((error) => { console.error(error); });  

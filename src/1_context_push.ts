@@ -18,13 +18,14 @@ async function main() {
     const wallet: ContextWallet = new ContextWallet(context, process.env.OWNER_PRIVKEY);
 
     // Write first commit.
-    const document = await context.clone('context', { storage, wallet });
+    const document = await context.clone('events1', { storage, wallet });
     if (document.info.registeredName) {
         console.log('First commit...');
-        await document.write({name: 'Context Protocol', url: 'https://www.ctx1.xyz'});
+        await document.install('core/project');
+        await document.write({name: 'Events Test'});
         await document.commit('First commit');
-        console.log('Pushing changes 1.0.3...');
-        await document.push(Version.PATCH);
+        console.log('Pushing changes 1.0.0...');
+        await document.push(Version.MAJOR);
     } else console.log('Invalid name');
     
 

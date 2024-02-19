@@ -1,40 +1,27 @@
-import { Context, Connection, ContextWallet, ContextDocument } from '@contextprotocol/sdk';
+import { Context, StorageObject, Connection, ContextWallet }
+    from '@contextprotocol/sdk';
+import { StorageArweave} from '@contextprotocol/arweave';
 import * as dotenv from "dotenv";
 dotenv.config();
 
-
-/**
- * Main function to register a new name in a context.
- * 
- * This function initializes a new context with the TESTNET network and a specified RPC provider URL.
- * It then connects to a wallet using a private key.
- * After connecting to the wallet, it initializes a document from the 'context'.
- * 
- * Finally, it registers a new name in the context, deposits tokens, and logs the result.
- * 
- * @async
- * @function
- * @throws {Error} Will throw an error if the wallet cannot be connected, the document cannot be initialized, or the name cannot be registered.
- */
+// Main : Test context.
 async function main() {
     const context: Context = new Context({
         connection: Connection.MUMBAI,
         rpcProviderUrl: process.env.RPC_PROVIDER
     });
 
-    // Connect the wallet of a document that is a curator.
-    const wallet: ContextWallet = await context.wallet(process.env.PRIVATE_KEY); 
-    const fromDoc: ContextDocument = await context.init('context_bot', wallet);
+    const storage: StorageObject = new StorageArweave({
+        irysPrivateKey: process.env.IRYS_PRIVATEKEY,
+        irysRpcProviderUrl: process.env.RPC_PROVIDER
+    });
+    const wallet: ContextWallet = new ContextWallet(context, process.env.OWNER_PRIVKEY);
 
-    // Finally, context registers the name (level1) and deposit tokens
-    const newName = process.env.NAME || 'testname';
-    const ownerAddress = wallet.address;
-    const tokens = 3;
-
-    // Names are registered by a curator : context (fromDoc).
-    console.log(`Registering ${newName}...`);
-    await context.register(newName, ownerAddress, tokens, fromDoc);
-    console.log(`${newName} has been registered. Owner is ${ownerAddress} with ${tokens} tokens.`);
+    // Write first commit.
+    console.log('Registering sergifern...');
+    const ctx = await context.clone('context', { storage, wallet });
+    const hash = await context.init('events1', wallet.address, 10, ctx);
+    console.log('Result:' + hash);
 }
 
 main().catch((error) => { console.error(error); });  
