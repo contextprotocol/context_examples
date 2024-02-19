@@ -40,8 +40,8 @@ async function main() {
     // Test 1 : Clone Data from Mumbai and arweave. No Wallet.
     // await showInfo(context, storage, 'context');
     // await showInfo(context, storage, 'core');
-    await showInfo(context, storage, 'core/human');
-    await showInfo(context, storage, 'core/human?version=1.0.0');
+    await showInfo(context, storage, 'core/organization');
+    await showInfo(context, storage, 'core/organization?version=1.0.0');
 }
 
 main().catch((error) => { console.error(error); });  
