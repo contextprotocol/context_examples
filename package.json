@@ -17,6 +17,6 @@
     "@contextprotocol/arweave": "^0.8.1",
     "@contextprotocol/sdk": "file:/home/alex/Documentos/Context/context_sdk",
     "chalk": "4.1.2",
-    "dotenv": "^16.4.4"
+    "dotenv": "^16.4.5"
   }
 }
