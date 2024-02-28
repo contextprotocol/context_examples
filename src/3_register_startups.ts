@@ -1,6 +1,5 @@
-import { Context, StorageObject, Connection, ContextWallet, Version }
+import { Context, Connection, ContextWallet, Version, StorageGreenfield }
     from '@contextprotocol/sdk';
-import { StorageArweave} from '@contextprotocol/arweave';
 
 import startupVenture from "./schemas/startup/venture.json";
 import startupInvestor from "./schemas/startup/investor.json";
@@ -23,10 +22,11 @@ async function main() {
         connection: Connection.MUMBAI,
         rpcProviderUrl: process.env.RPC_PROVIDER
     });
-
-    const storage: StorageObject = new StorageArweave({
-        irysPrivateKey: process.env.IRYS_PRIVATEKEY,
-        irysRpcProviderUrl: process.env.RPC_PROVIDER
+    const storage = new StorageGreenfield({
+        connection: Connection.MUMBAI,
+        bnbAddress: process.env.BNB_ADDRESS,
+        bnbPrivateKey: process.env.BNB_PRIVKEY,
+        bucketId: process.env.BNB_BUCKETID
     });
     const wallet: ContextWallet = new ContextWallet(context, process.env.OWNER_PRIVKEY);
 
@@ -41,11 +41,11 @@ async function main() {
 
     // iterate the object startupSschemas and register each schema
     for (let i=0; i < startupSschemas.length; i++) {
+        const schema = JSON.parse(JSON.stringify(startupSschemas[i].schema));
         const document = await context.clone(`startup/${startupSschemas[i].name}`, { storage, wallet });
-        console.log(document.info);
         if (document.info.registeredName && !document.info.registeredPath) {
             console.log(`startup/${startupSschemas[i].name} - First commit...`);
-            await document.write(startupSschemas[i].schema);
+            await document.write(schema);
             await document.commit('First commit');
             console.log('Pushing changes 1.0.0...');
             await document.push(Version.MAJOR);

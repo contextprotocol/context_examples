@@ -18,8 +18,8 @@ async function showInfo(context: Context, name: string) {
     console.log(chalk.grey(' - Pushed : ') + (document.info.registeredPath ? chalk.green('Yes') : chalk.red('No')));
     console.log(chalk.grey(' - Balance : ') + chalk.green(await document.balanceOf() + ' CTX'));
 
-    console.log(document.data);
-    console.log(document.schemas);
+    // console.log(document.data);
+    // console.log(document.schemas);
     await document.readNameInfo();
     console.log(chalk.grey(' - Owner : ') + chalk.green(document.info.owner));
     console.log(chalk.grey(' - Editor : ') + chalk.green(document.info.editor));
@@ -37,7 +37,9 @@ async function main() {
     // console.log('Wallet Address : ' + wallet.address);
 
     // Test 1 : Clone Data from Mumbai and arweave. No Wallet.
-    await showInfo(context, 'botgreen3');
+    await showInfo(context, 'context');
+    await showInfo(context, 'ctx_bot');
+    await showInfo(context, 'diputaciolleida');
     // await showInfo(context, storage, 'core');
     // await showInfo(context, storage, 'core/organization');
     // await showInfo(context, storage, 'core/organization?version=1.0.0');
