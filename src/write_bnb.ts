@@ -14,20 +14,20 @@ async function main() {
     const storage: StorageObject = new StorageGreenfield({
         connection: Connection.MUMBAI,
         bnbAddress: '0xe882EF71c0A363DE22D19021a0812889B2e1b26C',
-        bnbPrivateKey: '0xb48d0f9d3dc4c8c8126e5b8f47b67428a0ad925276e620d70fd349a5e613df93',
+        bnbPrivateKey: '',
         bucketId: 'context-bnb-testnet1'
     });
-    const wallet: ContextWallet = new ContextWallet(context, process.env.OWNER_PRIVKEY);
+    const wallet: ContextWallet = new ContextWallet(context, '');
 
     // Write first commit.
-    const document = await context.clone('green1', { storage, wallet });
+    const document = await context.clone('botgreen3', { storage, wallet });
     if (document.info.registeredName) {
         console.log('First commit...');
-        await document.install('core/project');
-        await document.write({name: 'Events Test BNB 1'});
+        // await document.install('core/project');
+        await document.write({name: 'This is the BOT Green3'});
         await document.commit('First commit');
-        console.log('Pushing changes 1.0.0...');
-        await document.push(Version.MAJOR);
+        console.log('Pushing changes 1.0.1...');
+        await document.push(Version.PATCH);
     } else console.log('Invalid name');
     
 
